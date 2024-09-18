@@ -4,9 +4,9 @@ import { Input } from "../ui/Input";
 
 export default function BookFlight() {
   return (
-    <div className="flex flex-col gap-4 border rounded-2xl shadow-md p-14">
+    <div className="flex flex-col gap-4 border rounded-2xl shadow-md py-10 px-4">
       <div className="flex flex-row justify-between">
-        <h1 className="text-4xl flex flex-row items-center gap-2 uppercase font-bold">
+        <h1 className="text-xl flex flex-row items-center gap-2 uppercase font-bold">
           <Plane size={32} />
           Book your flight
         </h1>

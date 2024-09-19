@@ -10,3 +10,5 @@ const list = async () => {
   );
   return res.data;
 };
+
+module.exports = { list, destination };

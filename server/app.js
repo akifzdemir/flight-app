@@ -14,6 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/flights", require("./routes/flightRoute"));
+app.use("/auth", require("./routes/authRoute"));
 
 app.listen(3000, () => {
   console.log("Server is running on port 3000");

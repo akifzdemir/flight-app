@@ -1,0 +1,25 @@
+version: "3"
+services:
+  api:
+    image: node
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "3000:3000"
+    command: npm start
+    depends_on:
+      - mongo
+    environment:
+      MONGO_URI: mongodb://mongo:27017/flightapp
+      JWT_SECRET: "Wv+AopoPW8nO3amsja11PK5szgSnpboWfsbE1nzcyYo="
+    restart: always
+
+  mongo:
+    image: mongo
+    ports:
+      - "27017:27017"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    restart: always

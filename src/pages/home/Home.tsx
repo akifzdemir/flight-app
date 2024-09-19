@@ -5,7 +5,7 @@ import Services from "@/components/home/Services";
 
 export default function Home() {
   return (
-    <div className="grid grid-cols-12 gap-6 min-h-screen  px-6">
+    <div className="grid grid-cols-12 bg-homebg gap-6 min-h-screen  px-6">
       <div className="col-span-9">
         <BookFlight />
         <div className="grid mt-4 grid-cols-8">

@@ -4,16 +4,16 @@ import { Input } from "../ui/Input";
 
 export default function BookFlight() {
   return (
-    <div className="flex flex-col gap-4 border rounded-2xl shadow-md py-10 px-4">
+    <div className="flex flex-col bg-white gap-4 border rounded-2xl shadow-md py-10 px-4">
       <div className="flex flex-row justify-between">
         <h1 className="text-xl flex flex-row items-center gap-2 uppercase font-bold">
           <Plane size={32} />
           Book your flight
         </h1>
         <div>
-          <Button className="rounded-r-none">Round Trip</Button>
+          <Button className="rounded-r-none rounded-l-full">Round Trip</Button>
 
-          <Button variant="outline" className="rounded-l-none ">
+          <Button variant="outline" className="rounded-l-none rounded-r-full">
             One Way
           </Button>
         </div>

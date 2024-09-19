@@ -19,7 +19,7 @@ export default function Flight({
   airline: string;
 }) {
   return (
-    <div className="mb-4 border shadow-md rounded-lg">
+    <div className="mb-4 border bg-white shadow-md relative rounded-lg">
       <div className="p-4">
         <div className="flex justify-between items-center mb-4">
           <h3 className="text-lg font-semibold">
@@ -45,14 +45,14 @@ export default function Flight({
             <p className="text-sm">Airport: MAD</p>
           </div>
         </div>
-        <div className="flex justify-between items-center">
+        <div className="flex justify-between items-start">
           <Button
-            variant="outline"
-            className="text-purple-600 border-purple-600"
+            variant="ghost"
+            className="text-purple-600 absolute rounded-t-none -bottom-10 border-purple-600"
           >
             Check the details
           </Button>
-          <Button className="bg-purple-600 hover:bg-purple-700">
+          <Button className="absolute h-16 w-48 rounded-b-none rounded-r-none bottom-0 right-0">
             Book Flight
           </Button>
         </div>

@@ -10,13 +10,13 @@ export default function Flight({
   price,
   airline,
 }: {
-  from: string;
-  to: string;
-  departure: string;
-  arrival: string;
-  duration: string;
-  price: number;
-  airline: string;
+  from?: string;
+  to?: string;
+  departure?: string;
+  arrival?: string;
+  duration?: string;
+  price?: number;
+  airline?: string;
 }) {
   return (
     <div className="mb-4 border bg-white shadow-md relative rounded-lg">
@@ -30,7 +30,7 @@ export default function Flight({
           <div>
             <p className="text-sm text-gray-500">Departure</p>
             <p className="font-semibold">{departure}</p>
-            <p className="text-sm">Airport: MXP</p>
+            <p className="text-sm">Airport: {from}</p>
             <span className="text-purple-600 font-bold">Price: ${price}</span>
             <p className="text-gray-500">Round trip</p>
           </div>
@@ -42,16 +42,16 @@ export default function Flight({
           <div className="text-right">
             <p className="text-sm text-gray-500">Arrival</p>
             <p className="font-semibold">{arrival}</p>
-            <p className="text-sm">Airport: MAD</p>
+            <p className="text-sm">Airport: {to}</p>
           </div>
         </div>
         <div className="flex justify-between items-start">
-          <Button
+          {/* <Button
             variant="ghost"
             className="text-purple-600 absolute rounded-t-none -bottom-10 border-purple-600"
           >
             Check the details
-          </Button>
+          </Button> */}
           <Button className="absolute h-16 w-48 rounded-b-none rounded-r-none bottom-0 right-0">
             Book Flight
           </Button>

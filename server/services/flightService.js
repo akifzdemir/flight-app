@@ -11,4 +11,4 @@ const list = async () => {
   return res.data;
 };
 
-module.exports = { list, destination };
+module.exports = { list };

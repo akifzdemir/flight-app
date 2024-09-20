@@ -32,7 +32,7 @@ export default function Home() {
                   from={flight.prefixIATA}
                   to={flight.route.destinations[0]}
                   departure={formatTime(flight.scheduleDateTime)}
-                  arrival={formatTime(flight.actualLandingTime)}
+                  arrival={formatTime(flight.estimatedLandingTime)}
                   duration={calculateDuration(
                     flight.scheduleDateTime,
                     flight.actualLandingTime

@@ -1,7 +1,11 @@
 import { Plane } from "lucide-react";
-import { Button } from "@/components/ui/Button";
+import { RegisterDialog } from "../auth/RegisterDialog";
+import { LoginDialog } from "../auth/LoginDialog";
+import { useAuthStore } from "@/stores/authStore";
+import { Button } from "../ui/Button";
 
 export default function Navbar() {
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
   return (
     <header
       className=" 
@@ -11,8 +15,16 @@ export default function Navbar() {
         <Plane size={32} strokeWidth={2} />
       </div>
       <div className="flex flex-row items-center gap-3">
-        <Button variant={"outline"}>Login</Button>
-        <Button>Register</Button>
+        {isLoggedIn ? (
+          <Button onClick={() => useAuthStore.getState().logout()}>
+            Logout
+          </Button>
+        ) : (
+          <>
+            <LoginDialog />
+            <RegisterDialog />
+          </>
+        )}
       </div>
     </header>
   );

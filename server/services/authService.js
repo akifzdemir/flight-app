@@ -7,13 +7,23 @@ const loginService = async (user) => {
   if (!currentUser) {
     throw new Error("User not found");
   }
-  const isMatch = await user.matchPassword(password);
+  const isMatch = await currentUser.matchPassword(password);
   if (!isMatch) {
     throw new Error("Invalid credentials");
   }
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
-    expiresIn: "1h",
-  });
+  const token = jwt.sign(
+    {
+      id: user._id,
+      user: {
+        email: user.email,
+        name: user.name,
+      },
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1h",
+    }
+  );
   return token;
 };
 
@@ -25,9 +35,19 @@ const registerService = async (user) => {
   }
   const newUser = new User(user);
   await newUser.save();
-  const token = jwt.sign({ id: newUser._id }, process.env.JWT_SECRET, {
-    expiresIn: "1h",
-  });
+  const token = jwt.sign(
+    {
+      id: newUser._id,
+      user: {
+        email: newUser.email,
+        name: newUser.name,
+      },
+    },
+    process.env.JWT_SECRET,
+    {
+      expiresIn: "1h",
+    }
+  );
   return token;
 };
 

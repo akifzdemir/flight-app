@@ -1,4 +1,5 @@
 import axios, { AxiosError } from "axios";
+import toast from "react-hot-toast";
 
 const baseURL = "http://localhost:3000";
 
@@ -20,6 +21,15 @@ instance.interceptors.response.use(
   },
   (error: AxiosError) => {
     const errorResponse = error.response?.data;
+
+    toast.error(
+      errorResponse &&
+        typeof errorResponse === "object" &&
+        "error" in errorResponse &&
+        typeof errorResponse.error === "string"
+        ? errorResponse.error
+        : "Something went wrong"
+    );
 
     return Promise.reject(errorResponse || error);
   }

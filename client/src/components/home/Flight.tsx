@@ -1,5 +1,7 @@
 import { Plane } from "lucide-react";
 import { Button } from "../ui/Button";
+import { addFlight } from "@/api/flight";
+import { FlightData } from "@/types";
 
 export default function Flight({
   from,
@@ -9,6 +11,7 @@ export default function Flight({
   duration,
   price,
   airline,
+  flight,
 }: {
   from?: string;
   to?: string;
@@ -17,7 +20,17 @@ export default function Flight({
   duration?: string;
   price?: number;
   airline?: string;
+  flight: FlightData;
 }) {
+  const handleBookFlight = async () => {
+    try {
+      const res = await addFlight(flight);
+      console.log(res);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   return (
     <div className="mb-4 border bg-white shadow-md relative rounded-lg">
       <div className="p-4">
@@ -52,7 +65,10 @@ export default function Flight({
           >
             Check the details
           </Button> */}
-          <Button className="absolute h-16 w-48 rounded-b-none rounded-r-none bottom-0 right-0">
+          <Button
+            onClick={() => handleBookFlight()}
+            className="absolute h-16 w-48 rounded-b-none rounded-r-none bottom-0 right-0"
+          >
             Book Flight
           </Button>
         </div>

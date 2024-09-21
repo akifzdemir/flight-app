@@ -39,6 +39,7 @@ export default function Home() {
                   )}
                   price={100}
                   airline={flight.flightName}
+                  flight={flight}
                 />
               ))
             )}

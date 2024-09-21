@@ -15,8 +15,8 @@ const loginService = async (user) => {
     {
       id: user._id,
       user: {
-        email: user.email,
-        name: user.name,
+        email: currentUser.email,
+        name: currentUser.name,
       },
     },
     process.env.JWT_SECRET,

@@ -1,8 +1,14 @@
-import { Plane } from "lucide-react";
+import { Plane, User } from "lucide-react";
 import { RegisterDialog } from "../auth/RegisterDialog";
 import { LoginDialog } from "../auth/LoginDialog";
 import { useAuthStore } from "@/stores/authStore";
 import { Button } from "../ui/Button";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "../ui/DropwonMenu";
 
 export default function Navbar() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -16,9 +22,7 @@ export default function Navbar() {
       </div>
       <div className="flex flex-row items-center gap-3">
         {isLoggedIn ? (
-          <Button onClick={() => useAuthStore.getState().logout()}>
-            Logout
-          </Button>
+          <UserDropdown />
         ) : (
           <>
             <LoginDialog />
@@ -29,3 +33,25 @@ export default function Navbar() {
     </header>
   );
 }
+
+const UserDropdown = () => {
+  const user = useAuthStore((state) => state.user);
+  const logout = useAuthStore((state) => state.logout);
+
+  return (
+    <DropdownMenu>
+      <DropdownMenuTrigger asChild>
+        <Button variant={"outline"} className="rounded-full">
+          <User /> {user?.name}
+        </Button>
+      </DropdownMenuTrigger>
+      <DropdownMenuContent sideOffset={8}>
+        <DropdownMenuItem>Profile</DropdownMenuItem>
+        <DropdownMenuItem>Settings</DropdownMenuItem>
+        <DropdownMenuItem onClick={logout} className="cursor-pointer">
+          Logout
+        </DropdownMenuItem>
+      </DropdownMenuContent>
+    </DropdownMenu>
+  );
+};

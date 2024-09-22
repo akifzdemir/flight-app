@@ -9,6 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from "../ui/DropwonMenu";
+import { Link, useNavigate } from "react-router-dom";
 
 export default function Navbar() {
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
@@ -17,9 +18,9 @@ export default function Navbar() {
       className=" 
      top-0 left-0 w-full h-16 flex bg-homebg z-20 flex-row items-center justify-between px-12"
     >
-      <div className="flex flex-row items-center ">
+      <Link to={"/"} className="flex flex-row items-center ">
         <Plane size={32} strokeWidth={2} />
-      </div>
+      </Link>
       <div className="flex flex-row items-center gap-3">
         {isLoggedIn ? (
           <UserDropdown />
@@ -37,6 +38,12 @@ export default function Navbar() {
 const UserDropdown = () => {
   const user = useAuthStore((state) => state.user);
   const logout = useAuthStore((state) => state.logout);
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    logout();
+    navigate("/");
+  };
 
   return (
     <DropdownMenu>
@@ -46,9 +53,10 @@ const UserDropdown = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent sideOffset={8}>
-        <DropdownMenuItem>Profile</DropdownMenuItem>
-        <DropdownMenuItem>Settings</DropdownMenuItem>
-        <DropdownMenuItem onClick={logout} className="cursor-pointer">
+        <DropdownMenuItem asChild className="cursor-pointer">
+          <Link to={`/flights/${user.id}`}>My Flights</Link>
+        </DropdownMenuItem>
+        <DropdownMenuItem onClick={handleLogout} className="cursor-pointer">
           Logout
         </DropdownMenuItem>
       </DropdownMenuContent>

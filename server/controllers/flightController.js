@@ -1,4 +1,4 @@
-const { list, add, remove } = require("../services/flightService");
+const { list, add, remove, getByUser } = require("../services/flightService");
 
 const getFlights = async (req, res) => {
   try {
@@ -13,7 +13,7 @@ const getFlightsByUser = async (req, res) => {
   try {
     const userId = req.user;
     const flights = await getByUser(userId);
-    res.json(flights);
+    res.json({ flights: flights });
   } catch (error) {
     res.status(500).json({ error: error });
   }

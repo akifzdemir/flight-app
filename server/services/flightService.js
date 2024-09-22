@@ -7,6 +7,7 @@ const list = async () => {
 };
 
 const getByUser = async (id) => {
+  console.log(id);
   const res = await Flight.find({ userId: id });
   return res;
 };

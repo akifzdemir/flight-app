@@ -2,6 +2,7 @@ import { Plane } from "lucide-react";
 import { Button } from "../ui/Button";
 import { addFlight } from "@/api/flight";
 import { FlightData } from "@/types";
+import toast from "react-hot-toast";
 
 export default function Flight({
   from,
@@ -24,8 +25,8 @@ export default function Flight({
 }) {
   const handleBookFlight = async () => {
     try {
-      const res = await addFlight(flight);
-      console.log(res);
+      await addFlight(flight);
+      toast.success("Flight booked successfully");
     } catch (error) {
       console.error(error);
     }

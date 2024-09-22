@@ -13,15 +13,15 @@ const loginService = async (user) => {
   }
   const token = jwt.sign(
     {
-      id: user._id,
       user: {
+        id: currentUser._id,
         email: currentUser.email,
         name: currentUser.name,
       },
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: "1h",
+      expiresIn: "24h",
     }
   );
   return token;
@@ -37,15 +37,15 @@ const registerService = async (user) => {
   await newUser.save();
   const token = jwt.sign(
     {
-      id: newUser._id,
       user: {
+        id: newUser._id,
         email: newUser.email,
         name: newUser.name,
       },
     },
     process.env.JWT_SECRET,
     {
-      expiresIn: "1h",
+      expiresIn: "24h",
     }
   );
   return token;

@@ -11,4 +11,6 @@ router
 
 router.route("/:id").delete(authMiddleware, flightController.removeFlight);
 
+router.route("/user").get(authMiddleware, flightController.getFlightsByUser);
+
 module.exports = router;

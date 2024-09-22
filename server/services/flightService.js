@@ -6,6 +6,11 @@ const list = async () => {
   return res.data;
 };
 
+const getByUser = async (id) => {
+  const res = await Flight.find({ userId: id });
+  return res;
+};
+
 const add = async (flight) => {
   const res = await Flight.create(flight);
   return res;
@@ -16,4 +21,4 @@ const remove = async (id) => {
   return res;
 };
 
-module.exports = { list, add, remove };
+module.exports = { list, add, remove, getByUser };

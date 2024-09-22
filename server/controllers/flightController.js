@@ -9,6 +9,16 @@ const getFlights = async (req, res) => {
   }
 };
 
+const getFlightsByUser = async (req, res) => {
+  try {
+    const userId = req.user;
+    const flights = await getByUser(userId);
+    res.json(flights);
+  } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
 const addFlight = async (req, res) => {
   try {
     const flight = req.body;
@@ -34,4 +44,5 @@ module.exports = {
   getFlights,
   addFlight,
   removeFlight,
+  getFlightsByUser,
 };

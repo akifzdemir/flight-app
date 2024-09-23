@@ -2,7 +2,11 @@ import { Button } from "../ui/Button";
 import { CalendarDays, Plane, PlaneLanding, PlaneTakeoff } from "lucide-react";
 import { Input } from "../ui/Input";
 
-export default function BookFlight() {
+export default function BookFlight({
+  setScheduleDate,
+}: {
+  setScheduleDate: (date: Date) => void;
+}) {
   return (
     <div className="flex flex-col bg-white gap-4 border rounded-2xl shadow-md py-10 px-4">
       <div className="flex flex-row justify-between">
@@ -41,6 +45,7 @@ export default function BookFlight() {
             <Input
               type="datetime-local"
               className="rounded-l-full px-10 py-2 "
+              onChange={(e) => setScheduleDate(new Date(e.target.value))}
             />
           </div>
           <div className="relative">

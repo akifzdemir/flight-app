@@ -2,7 +2,8 @@ const { list, add, remove, getByUser } = require("../services/flightService");
 
 const getFlights = async (req, res) => {
   try {
-    const flights = await list();
+    const params = req.query;
+    const flights = await list(params);
     res.json(flights);
   } catch (error) {
     res.status(500).json({ error: error });

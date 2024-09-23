@@ -1,6 +1,6 @@
 import { FlightData } from "@/types";
-import { Button } from "../ui/Button";
 import { calculateDuration, formatTime } from "@/lib/utils";
+import { Button } from "../ui/Button";
 
 export default function BookedFlight({ flight }: { flight: FlightData }) {
   return (
@@ -21,7 +21,7 @@ export default function BookedFlight({ flight }: { flight: FlightData }) {
       </div>
       <div className="flex flex-row items-center gap-12">
         <div className="flex flex-col">
-          <span className="text-lg font-bold">Non-Stop</span>
+          <span className="text-lg font-semibold">Non-Stop</span>
           <span className="text-lg font-thin">
             {calculateDuration(
               flight.scheduleDateTime,
@@ -30,7 +30,7 @@ export default function BookedFlight({ flight }: { flight: FlightData }) {
           </span>
         </div>
         <div className="flex flex-col gap-2">
-          <span className="font-bold">
+          <span className="font-semibold">
             {flight.prefixICAO} to {flight.route.destinations[0]}
           </span>
           <span className="text-sm text-gray-600">
@@ -40,7 +40,17 @@ export default function BookedFlight({ flight }: { flight: FlightData }) {
         </div>
       </div>
 
-      <div></div>
+      <div className="h-full flex flex-row items-center gap-4">
+        <Button variant={"outline"} className="h-32">
+          $156
+        </Button>
+        <Button variant={"outline"} className="h-32">
+          $156
+        </Button>
+        <Button variant={"outline"} className="h-32">
+          $156
+        </Button>
+      </div>
     </div>
   );
 }

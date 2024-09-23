@@ -20,20 +20,20 @@ interface DecodedToken extends JwtPayload {
 
 export const useAuthStore = create<AuthState>((set, get) => ({
   user: JSON.parse(
-    localStorage.getItem("user") ||
+    sessionStorage.getItem("user") ||
       JSON.stringify({
         id: "",
         email: "",
         name: "",
       })
   ),
-  isLoggedIn: localStorage.getItem("token") ? true : false,
+  isLoggedIn: sessionStorage.getItem("token") ? true : false,
   login: (token: string) => {
     const decode = jwtDecode<DecodedToken>(token);
     set({ isLoggedIn: true });
     set({ user: decode.user });
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(get().user));
+    sessionStorage.setItem("token", token);
+    sessionStorage.setItem("user", JSON.stringify(get().user));
   },
   logout: () => {
     set({ isLoggedIn: false });
@@ -44,7 +44,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         name: "",
       },
     });
-    localStorage.removeItem("user");
-    localStorage.removeItem("token");
+    sessionStorage.removeItem("user");
+    sessionStorage.removeItem("token");
   },
 }));

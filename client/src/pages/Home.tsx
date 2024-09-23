@@ -6,6 +6,7 @@ import Services from "@/components/home/Services";
 import { calculateDuration, formatTime } from "@/lib/utils";
 import { FlightData } from "@/types";
 import { Loader2 } from "lucide-react";
+import { useMemo, useState } from "react";
 import useSWR from "swr";
 
 interface FlightResponse {
@@ -13,12 +14,21 @@ interface FlightResponse {
 }
 
 export default function Home() {
-  const { data, isLoading } = useSWR<FlightResponse>("/flights", fetcher);
+  const [scheduleDate, setScheduleDate] = useState(new Date());
+  const formattedDate = useMemo(
+    () => scheduleDate.toISOString().split("T")[0],
+    [scheduleDate]
+  );
+
+  const { data, isLoading } = useSWR<FlightResponse>(
+    `/flights?scheduleDate=${formattedDate}`,
+    fetcher
+  );
 
   return (
     <div className="grid grid-cols-12 bg-homebg gap-6 min-h-screen  px-6">
       <div className="col-span-9">
-        <BookFlight />
+        <BookFlight setScheduleDate={setScheduleDate} />
         <div className="grid mt-4 grid-cols-8">
           <div className="col-span-6">
             {isLoading ? (

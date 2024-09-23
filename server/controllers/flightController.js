@@ -26,7 +26,7 @@ const addFlight = async (req, res) => {
     const newFlight = await add({ ...flight, userId });
     res.json(newFlight);
   } catch (error) {
-    res.status(500).json({ error: error });
+    res.status(500).json({ error: error.message || "An error occurred" });
   }
 };
 

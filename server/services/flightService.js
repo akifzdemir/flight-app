@@ -13,6 +13,14 @@ const getByUser = async (id) => {
 };
 
 const add = async (flight) => {
+  const existFlight = await Flight.findOne({
+    userId: flight.userId,
+    flightNumber: flight.flightNumber,
+  });
+
+  if (existFlight) {
+    throw new Error("Flight already exists");
+  }
   const res = await Flight.create(flight);
   return res;
 };

@@ -3,8 +3,12 @@ const Flight = require("../models/Flight");
 
 const list = async (params) => {
   const searchParams = new URLSearchParams(params).toString();
-  console.log(params);
   const res = await axios.get(`/flights?${searchParams}`);
+  return res.data;
+};
+
+const destinations = async () => {
+  const res = await axios.get("/destinations");
   return res.data;
 };
 
@@ -24,7 +28,7 @@ const add = async (flight) => {
     throw new Error("Flight already exists");
   }
 
-  if (flight.scheduleDateTime < new Date()) {
+  if (new Date(flight.scheduleDateTime) < new Date()) {
     throw new Error("Flight schedule date is in the past");
   }
   const res = await Flight.create(flight);
@@ -36,4 +40,4 @@ const remove = async (id) => {
   return res;
 };
 
-module.exports = { list, add, remove, getByUser };
+module.exports = { list, add, remove, getByUser, destinations };

@@ -1,4 +1,10 @@
-const { list, add, remove, getByUser } = require("../services/flightService");
+const {
+  list,
+  add,
+  remove,
+  getByUser,
+  destinations,
+} = require("../services/flightService");
 
 const getFlights = async (req, res) => {
   try {
@@ -6,6 +12,16 @@ const getFlights = async (req, res) => {
     const flights = await list(params);
     res.json(flights);
   } catch (error) {
+    res.status(500).json({ error: error });
+  }
+};
+
+const getDestinations = async (req, res) => {
+  try {
+    const data = await destinations();
+    res.json(data);
+  } catch (error) {
+    console.log(error);
     res.status(500).json({ error: error });
   }
 };
@@ -46,4 +62,5 @@ module.exports = {
   addFlight,
   removeFlight,
   getFlightsByUser,
+  getDestinations,
 };

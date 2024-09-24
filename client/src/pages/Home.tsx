@@ -27,8 +27,6 @@ export default function Home() {
     fetcher
   );
 
-  console.log(arrival, departure);
-
   const filteredData = useMemo(() => {
     return data?.flights.filter((flight) => {
       if (departure && arrival) {
@@ -62,7 +60,7 @@ export default function Home() {
             ) : filteredData && filteredData.length > 0 ? (
               filteredData.map((flight) => (
                 <Flight
-                  key={flight.id}
+                  key={flight._id}
                   from={flight.prefixIATA}
                   to={flight.route.destinations[0]}
                   departure={formatTime(flight.scheduleDateTime)}

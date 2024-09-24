@@ -1,4 +1,4 @@
-import { Plane, User } from "lucide-react";
+import { Earth, Plane, Tag, User } from "lucide-react";
 import { RegisterDialog } from "../auth/RegisterDialog";
 import { LoginDialog } from "../auth/LoginDialog";
 import { useAuthStore } from "@/stores/authStore";
@@ -18,10 +18,19 @@ export default function Navbar() {
       className=" 
      top-0 left-0 w-full h-16 flex bg-homebg z-20 flex-row items-center justify-between px-12"
     >
-      <Link to={"/"} className="flex flex-row items-center ">
-        <Plane size={32} strokeWidth={2} />
+      <Link
+        to={"/"}
+        className="flex flex-row gap-2 text-2xl font-bold text-primary items-center "
+      >
+        <Plane size={32} strokeWidth={2} /> PLANE SCAPE
       </Link>
       <div className="flex flex-row items-center gap-3">
+        <span className="flex flex-row items-center gap-2 text-primary">
+          Deals <Tag />
+        </span>
+        <span className="flex flex-row items-center gap-2 text-primary">
+          Discover <Earth />
+        </span>
         {isLoggedIn ? (
           <UserDropdown />
         ) : (

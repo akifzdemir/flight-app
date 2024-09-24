@@ -32,7 +32,7 @@ export interface FlightData {
   flightDirection: string;
   flightName: string;
   flightNumber: number;
-  id: string;
+  _id: string;
   isOperationalFlight: boolean;
   mainFlight: string;
   prefixIATA: string;

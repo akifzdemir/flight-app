@@ -1,8 +1,20 @@
 import { FlightData } from "@/types";
 import { calculateDuration, formatTime } from "@/lib/utils";
 import { Button } from "../ui/Button";
+import { deleteFlight } from "@/api/flight";
+import toast from "react-hot-toast";
+import { mutate } from "swr";
 
 export default function BookedFlight({ flight }: { flight: FlightData }) {
+  const handleCancel = async () => {
+    try {
+      await deleteFlight(flight._id);
+      toast.success("Flight cancelled successfully");
+      mutate("/flights/user");
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div
       className="mb-4 p-4 flex flex-row gap-4 items-center justify-around
@@ -15,8 +27,13 @@ export default function BookedFlight({ flight }: { flight: FlightData }) {
             {formatTime(flight.scheduleDateTime)} -{" "}
             {formatTime(flight.estimatedLandingTime)}
           </span>
-          <span className="text-2xl">Airline</span>
+          <span className="text-2xl">Airline Code :{flight.airlineCode}</span>
           <span className="underline text-blue-600">Flight Details</span>
+          <span>
+            <Button onClick={() => handleCancel()} variant={"destructive"}>
+              Cancel
+            </Button>
+          </span>
         </div>
       </div>
       <div className="flex flex-row items-center gap-12">

@@ -1,4 +1,5 @@
 const Mongoose = require("mongoose");
+require("dotenv").config();
 
 const db = Mongoose.connection;
 
